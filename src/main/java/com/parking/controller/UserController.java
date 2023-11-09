@@ -60,7 +60,6 @@ public class UserController {
     }
 
     @PostMapping(value = "/processLogin")
-    @ResponseBody
     public String procesarFormulario(@ModelAttribute User user) {
         System.out.println("Funciona el User");
         System.out.println(user.toString());
