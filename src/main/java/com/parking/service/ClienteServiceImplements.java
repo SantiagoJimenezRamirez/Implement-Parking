@@ -1,6 +1,6 @@
 package com.parking.service;
 
-import com.parking.entity.UserEntity;
+import com.parking.entity.ParkingEntity;
 import com.parking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,17 +13,17 @@ public class ClienteServiceImplements implements UserService{
     @Autowired
     UserRepository userRepository;
     @Override
-    public List<UserEntity> getAll() {
+    public List<ParkingEntity> getAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public UserEntity guardar(UserEntity cliente) {
+    public ParkingEntity guardar(ParkingEntity cliente) {
         return userRepository.save(cliente);
     }
 
     @Override
-    public UserEntity getById(Long id) {
+    public ParkingEntity getById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
 

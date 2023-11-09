@@ -1,6 +1,7 @@
 package com.parking.controller;
 
-import com.parking.entity.UserEntity;
+import com.parking.entity.User;
+import com.parking.entity.ParkingEntity;
 import com.parking.service.ClienteServiceImplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,33 +17,34 @@ public class UserController {
 
     @Autowired
     ClienteServiceImplements clienteServiceImplements;
+    private User user;
 
     @GetMapping("/cliente")
-    public List<UserEntity> getClientes(){
+    public List<ParkingEntity> getClientes(){
         return clienteServiceImplements.getAll();
     }
 
-    @PostMapping("/save")
-    public ResponseEntity<UserEntity> saveCliente(@RequestBody UserEntity cliente){
-        UserEntity new_cliente = clienteServiceImplements.guardar(cliente);
+    @PostMapping(value = "/save")
+    public ResponseEntity<ParkingEntity> saveCliente(@RequestBody ParkingEntity cliente){
+        ParkingEntity new_cliente = clienteServiceImplements.guardar(cliente);
         new_cliente.getHoraLlegada();
         return new ResponseEntity<>(new_cliente, HttpStatus.CREATED);
 
     }
 
     @GetMapping("/cliente/{id}")
-    public ResponseEntity<UserEntity> getById(@PathVariable Long id){
-        UserEntity clienteById =  clienteServiceImplements.getById(id);
+    public ResponseEntity<ParkingEntity> getById(@PathVariable Long id){
+        ParkingEntity clienteById =  clienteServiceImplements.getById(id);
         return ResponseEntity.ok(clienteById);
     }
 
     @PutMapping("/cliente/{id}")
-    public ResponseEntity<UserEntity> update(@PathVariable Long id, @RequestBody UserEntity cliente){
-        UserEntity clienteById = clienteServiceImplements.getById(id);
+    public ResponseEntity<ParkingEntity> update(@PathVariable Long id, @RequestBody ParkingEntity cliente){
+        ParkingEntity clienteById = clienteServiceImplements.getById(id);
         clienteById.setComentario(cliente.getComentario());
         clienteById.setPlaca(cliente.getPlaca());
 
-        UserEntity cliente_update = clienteServiceImplements.guardar(clienteById);
+        ParkingEntity cliente_update = clienteServiceImplements.guardar(clienteById);
         return new ResponseEntity<>(cliente_update, HttpStatus.CREATED);
 
     }
@@ -55,6 +57,14 @@ public class UserController {
         statusCliente.put("Eliminado", true);
 
         return  ResponseEntity.ok(statusCliente);
+    }
+
+    @PostMapping(value = "/processLogin")
+    @ResponseBody
+    public String procesarFormulario(@ModelAttribute User user) {
+        System.out.println("Funciona el User");
+        System.out.println(user.toString());
+        return "Home.html";
     }
 
 }
