@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/starts.css">
+        <title>Login</title>
+</head>
+</html>
+    <body>
+        
+        <div id="starts">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+        <div class="contain">
+        <div class="container">
+            <div class="heading">Sign In</div>
+            <form class="form" action="/api/v1/processLogin" method="post">
+              <input class="input" type="email" name="email" id="email" placeholder="email">
+              <input class="input" type="password" name="password" id="password" placeholder="password">
+              <span class="forgot-password"><a href="forgot-password.html">Forgot Password?</a></span>
+                <button class="login-button" type="submit">Enviar</button>
+
+              <p class="create-account">You do not have an account? <a href="../templates/create-account.html" target="_blank">Create account</a></p>
+            </form>
+        </div>
+
+        </div>
+    </body>
+</html>
